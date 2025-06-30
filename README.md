@@ -39,7 +39,7 @@ Initial seed data (via data.sql):
 
 2. Transfer
 
-   Stores successful transfer records. (Initially empty)
+Stores successful transfer records. (Initially empty)
 
    | Column            | Type      | Description                 |
    | ----------------- | --------- | --------------------------- |
@@ -51,23 +51,21 @@ Initial seed data (via data.sql):
    | created\_at       | TIMESTAMP | When transfer was performed |
 ---
 ### What is tested in run-tests.sh
-The bash script:
 
->Shows initial account balances.
+Runs via curl:
+> Current state of account table
 
-Runs these transfer attempts via curl:
+>Transfer: Billy → Milly, 100 (should succeed)
 
->Billy → Milly, 100 (should succeed)
+>Transfer: Charlie → Milly, 100 (should fail: insufficient funds)
 
->Charlie → Milly, 100 (should fail: insufficient funds)
+>Transfer: Jenny (id 999) → Milly (should fail: invalid sender)
 
->Jenny (id 999) → Milly (should fail: invalid sender)
-
->Charlie → Milly, -50 (should fail: invalid amount)
+>Transfer: Charlie → Milly, -50 (should fail: invalid amount)
 
 >Prints final state of accounts.
 
->Prints all successful transfers from the log table.
+>Prints all successful transfers from the transfer table.
 
 This demonstrates both positive and negative scenarios.
 
